@@ -3,7 +3,7 @@ import { render, fireEvent } from '@testing-library/react-native';
 import { LoadMoreButton } from '../atoms/loadMoreButton.component';
 import { useThemeColor } from '@/hooks/useThemeColor.hooks';
 
-jest.mock('@/hooks/useThemeColor');
+jest.mock('../../hooks/useThemeColor.hooks.ts');
 
 describe('LoadMoreButton', () => {
   beforeEach(() => {

@@ -3,7 +3,7 @@ import { render } from '@testing-library/react-native';
 import { useThemeColor } from '@/hooks/useThemeColor.hooks';
 import { ThemedText } from '../themedText.component';
 
-jest.mock('@/hooks/useThemeColor');
+jest.mock('../../hooks/useThemeColor.hooks.ts');
 
 describe('ThemedText', () => {
   it('should render with default styling', () => {

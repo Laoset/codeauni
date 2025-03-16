@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
 import { useThemeColor } from '@/hooks/useThemeColor.hooks';
 import { SearchInput } from '../atoms/searchInput.component';
-jest.mock('@/hooks/useThemeColor');
+jest.mock('../../hooks/useThemeColor.hooks.ts');
 
 describe('SearchInput', () => {
   beforeEach(() => {
