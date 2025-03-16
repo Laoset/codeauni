@@ -1,74 +1,94 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { CharacterSlimList } from '@/components/organisms/characterSlimList.component';
+import { ThemedText } from '@/components/themedText.component';
+import { useGetPeople } from '@/hooks/usePeople.hooks';
+import { StyleSheet, Image, View, ScrollView, Pressable } from 'react-native';
+import IconGroup from '@/components/molecules/iconGroup.component';
+import { SearchWithSuggestions } from '@/components/molecules/searchWithSuggestions.component';
+import { router } from 'expo-router';
+import ThemeButton from '@/components/atoms/themeButton.component';
 
 export default function HomeScreen() {
+  const { data, isLoading } = useGetPeople();
+  const allCharacters = data?.pages.flatMap((page) => page.results) || [];
+  const featuredCharacters = allCharacters.filter(
+    (character) =>
+      character.nombre === 'Luke Skywalker' ||
+      character.nombre === 'Darth Vader' ||
+      character.nombre === 'Leia Organa'
+  );
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
+    <ScrollView>
+      <View style={styles.container}>
+        <ThemedText type='title' style={styles.title}>
+          Star Wars Wiki
+        </ThemedText>
+        <ThemeButton />
+        <SearchWithSuggestions />
+
+        <ThemedText type='subtitle' style={styles.subtitle}>
+          Categorias
+        </ThemedText>
+        <IconGroup />
+
+        <ThemedText type='subtitle' style={styles.subtitle}>
+          Personajes principales
+        </ThemedText>
+        <CharacterSlimList
+          characters={featuredCharacters}
+          isLoading={isLoading}
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
+
+        <ThemedText type='subtitle' style={styles.subtitle}>
+          Empieza por
         </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+
+        <View style={styles.recommendationContainer}>
+          <Pressable
+            onPress={() => router.push('/film/4' as any)}
+            style={styles.recommendationPressable}
+          >
+            <Image
+              source={require('../../assets/images/sw1.jpg')}
+              style={styles.recommendationImage}
+            />
+            <ThemedText style={styles.recommendationText}>
+              The Phantom Menace
+            </ThemedText>
+          </Pressable>
+        </View>
+      </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
+  container: {
+    padding: 16,
+    overflowY: 'visible',
+  },
+  title: {
+    marginVertical: 16,
+    textAlign: 'center',
+    fontSize: 56,
+  },
+  subtitle: {
+    marginTop: 24,
+    marginBottom: 16,
+  },
+  recommendationContainer: {
     alignItems: 'center',
-    gap: 8,
+    marginTop: 16,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  recommendationPressable: {
+    alignItems: 'center',
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  recommendationImage: {
+    width: 200,
+    height: 250,
+    objectFit: 'contain',
+  },
+  recommendationText: {
+    marginTop: 8,
   },
 });

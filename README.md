@@ -1,50 +1,84 @@
-# Welcome to your Expo app 👋
+# Desafío Técnico CODEa UNI - Desarrollador Frontend Móvil y Web Junior
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Este proyecto es una app desarrollada con **React Native** que consume la api de SWAPI para mostrar información sobre los personajes, planetas y películas de la saga Star Wars.
 
-## Get started
+## 🚀 Instalación y ejecución
 
-1. Install dependencies
+1. Instala las dependencias:
 
    ```bash
-   npm install
+   npm install  # o pnpm install
    ```
 
-2. Start the app
+2. Inicia la app:
 
    ```bash
     npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+Esto iniciara las opciones de expo, donde podrás escanear el código QR en tu dispositivo o abrir el proyecto en un emulador.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 📌 Funcionalidades
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+- **Integración con la API de SWAPI**: Mediante el uso de Tanstack Query, la app consume la API de SWAPI para obtener información de la saga Star Wars.
+- **Modo oscuro**: La app proporciona un modo oscuro para mejorar la experiencia de usuario en ambientes con iluminación reducida.
+- **Busqueda unificada**: La app permite buscar personajes, planetas y películas de la saga Star Wars de manera unificada en la pagina inicial.
+- **Listado de Personajes, Planetas y Películas**: La app muestra un listado de personajes, planetas y películas de la saga Star Wars.
+- **Busqueda individual**: La app permite buscar personajes, planetas y peliculas de la saga Star Wars individualmente.
+- **Testing**: La app utiliza Jest y Testing Library para realizar pruebas unitarias y de integración.
 
-## Get a fresh project
+## 📌 Pantallas
 
-When you're ready, run:
+La aplicación consta de las siguientes pantallas :
 
-```bash
-npm run reset-project
-```
+- **Pantalla Inicial**: En la pantalla principal, los usuarios pueden acceder rápidamente a las tres secciones principales de la app: _Personajes_, _Planetas_ y _Películas_. Además, ofrece un buscador unificado para realizar búsquedas en las tres categorías, los personajes principales, una recomendación de película y un boton para cambiar a modo oscuro.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+- **Personajes**: Esta pantalla muestra una lista de los personajes. Los usuarios pueden ver información básica y acceder a los detalles de cada personaje. También pueden realizar búsquedas dentro de esta sección específica.
 
-## Learn more
+- **Planetas**:Muestra una lista de los planetas presentes en la saga. Al igual que la pantalla de personajes, los usuarios pueden ver detalles básicos de cada planeta y realizar búsquedas dentro de la sección de planetas.
 
-To learn more about developing your project with Expo, look at the following resources:
+- **Películas**: Aquí se muestra un listado de todas las películas de Star Wars. Los usuarios pueden ver detalles básicos de cada película, como el título, el año de estreno y otros detalles relevantes. Además, pueden realizar búsquedas dentro de esta sección.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- **Detalle de Personaje/Planeta/Película**: Al seleccionar un personaje/planeta/película de la lista, los usuarios serán dirigidos a una pantalla con detalles completos sobre ese personaje/planeta/película.
 
-## Join the community
+## 📌 Estructura del Código
 
-Join our community of developers creating universal apps.
+El proyecto sigue el patrón de **Atomic Design** y una convención de nomenclatura clara y consistente para facilitar la comprensión y el mantenimiento del código:
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- **Nombres en camelCase**: La primera letra de la primera palabra se escribe en minúscula, y las demás palabras se escriben con la primera letra en mayúscula.
+
+  - Ejemplo: `planetCard.component.tsx`.
+
+- **Sufijos descriptivos**: Cada archivo tiene un sufijo que indica su tipo o propósito:
+  - `.component.tsx`: Componentes.
+  - `.types.ts`: Tipos de TypeScript.
+  - `.hooks.ts`: Custom hooks.
+  - `.utils.ts`: Funciones utilitarias.
+
+Ejemplos:
+
+- `api.types.ts`
+- `usePeople.hooks.ts`
+
+## 🧪 Testing
+
+Este proyecto utiliza **Jest** y **Testing Library** para pruebas unitarias y de integración.
+
+### 🔹 Ejecutar pruebas con Jest Y Testing Library
+
+1. Ejecuta los tests con:
+   ```bash
+   npm run test  # o pnpm run test
+   ```
+
+## 🛠️ Tecnologías utilizadas
+
+- React Native 0.76
+- React 18
+- TypeScript
+- Tanstack Query
+- Axios
+- Expo
+- Jest
+- Testing Library
+- Lucide Icons
